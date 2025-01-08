@@ -1,0 +1,40 @@
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #000000;
+    opacity: 1;
+    animation: fadeIn 0.5s ease forwards;
+  
+    &.ng-leave {
+      animation: fadeOut 0.5s ease forwards;
+    }
+  
+    .icon {
+      width: 400px;
+      height: 400px;
+      background-color: white; 
+      border-radius: 50%;
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+      img {
+        width: 350px;
+      }
+    }
+  
+    .app-loader {
+      background: url("/assets/three-dots.svg");
+      background-repeat: no-repeat;
+      max-width: 100%;
+      background-position: center;
+      background-size: contain;
+      width: 80px;
+      height: 80px;
+    }
+}
