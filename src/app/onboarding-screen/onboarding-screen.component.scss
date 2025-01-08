@@ -1,0 +1,140 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    120deg,
+    #f0f4f8,
+    #dfe9f3
+  ); // Subtle gradient background
+  padding: 16px;
+}
+
+.onboarding-card {
+  display: flex;
+  width: 100%;
+  max-width: 1200px; // Increased card size
+  background-color: #ffffff; // White background
+  border-radius: 24px; // Larger rounded corners
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); // Enhanced shadow for depth
+  overflow: hidden;
+  transform: scale(1); // Add scale animation
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02); // Slight zoom effect on hover
+  }
+
+  .left-section {
+    flex: 1.2;
+    background: linear-gradient(135deg, #007bff, #0056b3); // Stylish gradient
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px; // More padding for larger space
+
+    img {
+      width: 100%;
+      max-width: 500px; // Larger image for balance
+      height: auto;
+      animation: fadeIn 1s ease; // Subtle animation for entry
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .right-section {
+    flex: 1.5;
+    padding: 48px; // More padding for spacing
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    header {
+      display: flex;
+      justify-content: flex-end;
+
+      .skip-btn {
+        background: none;
+        border: none;
+        font-size: 14px;
+        color: #888;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &:hover {
+          color: #555;
+        }
+      }
+    }
+
+    main {
+      text-align: center;
+
+      .title {
+        font-size: 36px; // Bigger, more prominent title
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 24px;
+      }
+
+      .subtitle {
+        font-size: 18px; // Slightly larger subtitle
+        color: #666;
+        line-height: 1.6;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .progress-indicator {
+        display: flex;
+        gap: 12px; // Increased spacing for dots
+        margin-bottom: 24px;
+
+        .dot {
+          width: 12px; // Bigger dots
+          height: 12px;
+          border-radius: 50%;
+          background-color: #ddd;
+
+          &.active {
+            background-color: #007bff; // Active dot color
+          }
+        }
+      }
+
+      .next-btn {
+        background-color: #007bff; // Primary button color
+        color: #fff;
+        border: none;
+        border-radius: 32px; // Larger rounded button
+        padding: 16px 40px; // More padding for a premium feel
+        font-size: 18px; // Larger font size
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); // Slight shadow for elevation
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+          background-color: #0056b3; // Darker shade for hover
+          transform: translateY(-2px); // Lift effect on hover
+        }
+      }
+    }
+  }
+}
