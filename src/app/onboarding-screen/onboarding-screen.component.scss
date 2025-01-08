@@ -14,12 +14,12 @@
 .onboarding-card {
   display: flex;
   width: 100%;
-  max-width: 1200px; // Increased card size
-  background-color: #ffffff; // White background
-  border-radius: 24px; // Larger rounded corners
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); // Enhanced shadow for depth
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  transform: scale(1); // Add scale animation
+  transform: scale(1);
   transition: transform 0.3s ease;
 
   &:hover {
