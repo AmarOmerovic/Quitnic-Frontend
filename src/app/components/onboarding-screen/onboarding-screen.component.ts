@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,10 @@ import { Router } from '@angular/router';
   imports: [CommonModule],
   templateUrl: './onboarding-screen.component.html',
   styleUrl: './onboarding-screen.component.scss',
+  standalone: true,
 })
 export class OnboardingScreenComponent {
-  constructor(private router: Router) {}
+  router = inject(Router);
 
   steps = [
     {
@@ -42,11 +43,12 @@ export class OnboardingScreenComponent {
     if (this.currentStep < this.steps.length - 1) {
       this.currentStep++;
     } else {
-      this.router.navigate(['/signup']);
+      this.router.navigate(['/signup'], { replaceUrl: true });
     }
   }
 
   skip() {
-    this.router.navigate(['/signup']);
+    console.log('TEst');
+    this.router.navigate(['/signup'], { replaceUrl: true });
   }
 }

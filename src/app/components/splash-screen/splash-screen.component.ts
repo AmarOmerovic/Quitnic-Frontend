@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SupabaseService } from '../../shared/services/supabase/supabase.service';
 
 @Component({
   selector: 'app-splash-screen',
   imports: [CommonModule],
   templateUrl: './splash-screen.component.html',
   styleUrl: './splash-screen.component.scss',
+  standalone: true,
 })
 export class SplashScreenComponent implements OnInit {
-  constructor(private router: Router) {}
+  router = inject(Router);
+  supabaseService = inject(SupabaseService);
 
   ngOnInit(): void {
     setTimeout(() => {

@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "@supabase/node-fetch",
+              "whatwg-url"
+            ],
             "outputPath": "dist/quitnic-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { SupabaseService } from '../../shared/services/supabase.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SupabaseService } from '../../shared/services/supabase/supabase.service';
 
 @Component({
   selector: 'app-signin-screen',
@@ -12,15 +12,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './signin-screen.component.scss',
 })
 export class SigninScreenComponent {
+  router = inject(Router);
+  supabaseService = inject(SupabaseService);
+
   email: string = '';
   password: string = '';
-
   errorMessage: string = '';
-
-  constructor(
-    private router: Router,
-    private supabaseService: SupabaseService
-  ) {}
 
   async login() {
     this.errorMessage = '';
@@ -36,12 +33,16 @@ export class SigninScreenComponent {
       return;
     }
 
-    try {
-      const data = await this.supabaseService.signIn(this.email, this.password);
-      console.log('Logged');
-    } catch (error: any) {
-      this.errorMessage = error.message || 'An error occurred during sign-up.';
-    }
+    this.supabaseService
+      .signIn(this.email, this.password)
+      .subscribe((result) => {
+        if (result.error) {
+          this.errorMessage =
+            result.error.message || 'An error occurred during sign-up.';
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      });
   }
 
   navigateToSignUp() {

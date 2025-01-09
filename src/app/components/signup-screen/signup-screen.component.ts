@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { SupabaseService } from '../../shared/services/supabase.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SupabaseService } from '../../shared/services/supabase/supabase.service';
+import { UserService } from '../../shared/services/user/user.service';
 
 @Component({
   selector: 'app-signup-screen',
@@ -12,20 +13,18 @@ import { CommonModule } from '@angular/common';
   imports: [FormsModule, CommonModule],
 })
 export class SignupScreenComponent {
+  router = inject(Router);
+  supabaseService = inject(SupabaseService);
+  userService = inject(UserService);
+
   firstName: string = '';
   lastName: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
   agreeToTerms: boolean = false;
-
   errorMessage: string = '';
   successMessage: string = '';
-
-  constructor(
-    private router: Router,
-    private supabaseService: SupabaseService
-  ) {}
 
   async register() {
     this.errorMessage = '';
@@ -63,16 +62,19 @@ export class SignupScreenComponent {
       return;
     }
 
-    try {
-      const data = await this.supabaseService.signUp(this.email, this.password);
-      this.successMessage =
-        'Registration successful! Please check your email for confirmation.';
-    } catch (error: any) {
-      this.errorMessage = 'An error occurred during sign-up.';
-    }
+    this.supabaseService
+      .signUp(this.email, this.password)
+      .subscribe((result) => {
+        if (result.error) {
+          this.errorMessage = 'An error occurred during sign-up.';
+        } else {
+          this.successMessage =
+            'Registration successful! Please check your email for confirmation.';
+        }
+      });
   }
 
   navigateToSignIn() {
-    this.router.navigate(['/signin']);
+    this.router.navigate(['/signin'], { replaceUrl: true });
   }
 }
