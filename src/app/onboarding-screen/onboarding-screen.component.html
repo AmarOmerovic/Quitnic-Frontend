@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="onboarding-card">
+    <div class="left-section">
+      <img [src]="currentContent.image" alt="Onboarding Illustration" />
+    </div>
+    <div class="right-section">
+      <header>
+        <button class="skip-btn" (click)="skip()">Skip</button>
+      </header>
+      <main>
+        <h1 class="title">{{ currentContent.title }}</h1>
+        <p class="subtitle">{{ currentContent.description }}</p>
+      </main>
+      <footer>
+        <div class="progress-indicator">
+          <span
+            class="dot"
+            *ngFor="let step of steps; let i = index"
+            [class.active]="i === currentStep"
+          ></span>
+        </div>
+        <button class="next-btn" (click)="nextStep()">Next</button>
+      </footer>
+    </div>
+  </div>
+</div>
