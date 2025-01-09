@@ -9,4 +9,8 @@ import { Router } from '@angular/router';
 })
 export class SigninScreenComponent {
   constructor(private router: Router) {}
+
+  navigateToSignUp() {
+    this.router.navigate(['/signup']);
+  }
 }
