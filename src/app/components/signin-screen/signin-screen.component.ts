@@ -40,12 +40,13 @@ export class SigninScreenComponent {
   private performSupabaseLogin() {
     this.supabaseService.signIn(this.email, this.password).subscribe({
       next: (result) => this.handleSupabaseResponse(result),
-      error: (supabaseError) => this.handleSupabaseError(),
+      error: () => this.handleSupabaseError(),
     });
   }
 
   private handleSupabaseResponse(result: any) {
     if (result.error) {
+      this.supabaseService.signOut();
       this.errorMessage = 'An error occurred during sign-in.';
       return;
     }

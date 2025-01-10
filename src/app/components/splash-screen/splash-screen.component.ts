@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../shared/services/supabase/supabase.service';
 import { catchError, of, tap } from 'rxjs';
+import { UserService } from '../../shared/services/user/user.service';
 
 @Component({
   selector: 'app-splash-screen',
@@ -13,6 +14,7 @@ import { catchError, of, tap } from 'rxjs';
 })
 export class SplashScreenComponent implements OnInit {
   router = inject(Router);
+  userService = inject(UserService);
   supabaseService = inject(SupabaseService);
 
   ngOnInit(): void {
@@ -27,7 +29,8 @@ export class SplashScreenComponent implements OnInit {
       .pipe(
         tap((session) => {
           if (session) {
-            this.router.navigateByUrl('/survey');
+            const supabaseUserId = session.user?.id;
+            this.fetchUserFromBackend(supabaseUserId);
           } else {
             this.router.navigateByUrl('/onboarding');
           }
@@ -38,5 +41,15 @@ export class SplashScreenComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  private fetchUserFromBackend(userId: string) {
+    this.userService.fetchUserWithId(userId).subscribe({
+      next: () => this.router.navigateByUrl('/survey'),
+      error: () =>
+        this.supabaseService.signOut().subscribe({
+          next: () => this.router.navigateByUrl('/onboarding'),
+        }),
+    });
   }
 }
