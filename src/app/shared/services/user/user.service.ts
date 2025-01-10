@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserRequest } from '../../models/user';
-import { UserResponse } from '@supabase/supabase-js';
+import { UserRequest, UserResponse } from '../../models/user';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +10,24 @@ import { Observable } from 'rxjs/internal/Observable';
 export class UserService {
   http = inject(HttpClient);
 
-  private apiUrl = 'https://your-backend-url/api/user'; // Replace with your backend URL
+  userApi = 'api/user';
 
   createUser(user: UserRequest): Observable<UserResponse> {
-    return this.http.post<UserResponse>(`${this.apiUrl}`, user);
+    return this.http.post<UserResponse>(
+      `${environment.apiBaseUrl + this.userApi}`,
+      user
+    );
   }
 
-  getUserById(id: string): Observable<UserResponse> {
-    return this.http.get<UserResponse>(`${this.apiUrl}/${id}`);
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(
+      `${environment.apiBaseUrl}${this.userApi}/${id}`
+    );
+  }
+
+  fetchUserWithId(id: string): Observable<UserResponse> {
+    return this.http.get<UserResponse>(
+      `${environment.apiBaseUrl}${this.userApi}/${id}`
+    );
   }
 }
