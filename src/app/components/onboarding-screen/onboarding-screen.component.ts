@@ -43,12 +43,11 @@ export class OnboardingScreenComponent {
     if (this.currentStep < this.steps.length - 1) {
       this.currentStep++;
     } else {
-      this.router.navigate(['/signup'], { replaceUrl: true });
+      this.router.navigateByUrl('/signup');
     }
   }
 
   skip() {
-    console.log('TEst');
-    this.router.navigate(['/signup'], { replaceUrl: true });
+    this.router.navigateByUrl('/signup');
   }
 }

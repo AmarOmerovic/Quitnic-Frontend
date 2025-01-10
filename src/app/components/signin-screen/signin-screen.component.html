@@ -38,14 +38,6 @@
         <button class="btn-primary" (click)="login()">Login</button>
         <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
       </form>
-      <div class="social-login">
-        <p>Or, Sign In with</p>
-        <div class="social-icons">
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-google"></i>
-          <i class="fab fa-apple"></i>
-        </div>
-      </div>
       <p class="signup-link">
         Don’t have an account?
         <a (click)="navigateToSignUp()">Create One</a>

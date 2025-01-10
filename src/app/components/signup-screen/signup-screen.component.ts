@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../../shared/services/supabase/supabase.service';
 import { UserService } from '../../shared/services/user/user.service';
-import { UserRequest, UserResponse } from '../../shared/models/user';
+import { UserRequest } from '../../shared/models/user';
 import { concatMap } from 'rxjs';
 
 @Component({
@@ -29,7 +29,11 @@ export class SignupScreenComponent {
   successMessage: string = '';
 
   navigateToSignIn() {
-    this.router.navigate(['/signin'], { replaceUrl: true });
+    this.router.navigateByUrl('/signin');
+  }
+
+  navigateToTermsAndConditions() {
+    this.router.navigateByUrl('/terms-and-conditions');
   }
 
   register() {

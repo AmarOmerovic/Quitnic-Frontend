@@ -37,6 +37,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'terms-and-conditions',
+    loadComponent: () =>
+      import(
+        '../../components/terms-and-conditions-screen/terms-and-conditions-screen.component'
+      ).then((m) => m.TermsAndConditionsScreenComponent),
+  },
+  {
     path: '',
     redirectTo: '/splash',
     pathMatch: 'full',

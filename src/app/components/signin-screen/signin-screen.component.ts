@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { SupabaseService } from '../../shared/services/supabase/supabase.service';
 import { UserService } from '../../shared/services/user/user.service';
 
@@ -14,6 +14,7 @@ import { UserService } from '../../shared/services/user/user.service';
 })
 export class SigninScreenComponent {
   router = inject(Router);
+  location = inject(Location);
   userService = inject(UserService);
   supabaseService = inject(SupabaseService);
 
@@ -22,7 +23,7 @@ export class SigninScreenComponent {
   errorMessage: string = '';
 
   navigateToSignUp() {
-    this.router.navigate(['/signup']);
+    this.location.back();
   }
 
   login() {
