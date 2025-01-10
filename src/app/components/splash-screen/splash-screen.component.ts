@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../shared/services/supabase/supabase.service';
+import { catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-splash-screen',
@@ -16,7 +17,26 @@ export class SplashScreenComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.router.navigate(['/onboarding'], { replaceUrl: true });
-    }, 3000);
+      this.checkSessionAndNavigate();
+    }, 2000);
+  }
+
+  private checkSessionAndNavigate() {
+    this.supabaseService
+      .getSession()
+      .pipe(
+        tap((session) => {
+          if (session) {
+            this.router.navigateByUrl('/survey');
+          } else {
+            this.router.navigateByUrl('/onboarding');
+          }
+        }),
+        catchError(() => {
+          this.router.navigateByUrl('/onboarding');
+          return of(null);
+        })
+      )
+      .subscribe();
   }
 }
