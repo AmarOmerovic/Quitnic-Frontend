@@ -74,7 +74,10 @@
             name="agreeToTerms"
             required
           />
-          <label for="terms">I agree to all terms and conditions</label>
+          <p class="signin-link">
+            I agree to all
+            <a (click)="navigateToTermsAndConditions()">terms and conditions</a>
+          </p>
         </div>
         <button type="submit" class="btn-primary" (click)="register()">
           Register
@@ -83,14 +86,6 @@
         <p class="success-message" *ngIf="successMessage">
           {{ successMessage }}
         </p>
-        <div class="social-login">
-          <p>Or, Sign Up with</p>
-          <div class="social-icons">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-google"></i>
-            <i class="fab fa-apple"></i>
-          </div>
-        </div>
       </form>
       <p class="signin-link">
         Already have an account?

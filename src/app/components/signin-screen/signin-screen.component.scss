@@ -3,7 +3,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(120deg, #f0f4f8, #dfe9f3);
+  background: url("/assets/app-bg.svg");
+  background-color: #f0f4f8;
   padding: 16px;
 }
 
@@ -12,6 +13,7 @@
   flex-direction: row-reverse; // Swaps the order of the sections
   width: 100%;
   max-width: 1200px;
+  min-height: 60vh;
   background-color: #fff;
   border-radius: 24px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
@@ -45,7 +47,7 @@
 
   .right-section {
     flex: 1.7;
-    padding: 48px;
+    padding: 80px;
     display: flex;
     flex-direction: column;
 
@@ -114,7 +116,7 @@
         padding: 16px 40px;
         font-size: 18px;
         font-weight: 600;
-        margin-top: 12px;
+        margin-top: 24px;
         cursor: pointer;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         transition: background-color 0.3s ease, transform 0.2s ease;
@@ -129,34 +131,6 @@
         color: #e74c3c; /* Red for error */
         font-size: 14px;
         text-align: center;
-      }
-    }
-
-    .social-login {
-      margin: 24px 0;
-      text-align: center;
-
-      p {
-        font-size: 14px;
-        color: #555;
-        margin-bottom: 8px;
-      }
-
-      .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-
-        i {
-          font-size: 32px;
-          color: #333;
-          cursor: pointer;
-          transition: color 0.3s ease;
-
-          &:hover {
-            color: #007bff;
-          }
-        }
       }
     }
 
