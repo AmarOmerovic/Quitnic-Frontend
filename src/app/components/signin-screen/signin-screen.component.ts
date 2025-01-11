@@ -63,7 +63,7 @@ export class SigninScreenComponent {
 
   private fetchUserFromBackend(userId: string) {
     this.userService.fetchUserWithId(userId).subscribe({
-      next: () => this.router.navigateByUrl('/survey'),
+      next: () => this.router.navigateByUrl('/dashboard'),
       error: () => this.handleBackendError(),
     });
   }

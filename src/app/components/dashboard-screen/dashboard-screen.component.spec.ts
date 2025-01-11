@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SurveyScreenComponent } from './survey-screen.component';
+import { SurveyScreenComponent } from './dashboard-screen.component';
 
 describe('SurveyScreenComponent', () => {
   let component: SurveyScreenComponent;
