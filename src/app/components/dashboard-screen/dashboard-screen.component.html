@@ -7,25 +7,25 @@
     <nav class="menu">
       <ul>
         <li class="menu-item active">
-          <a href="#">
+          <a href="dashboard/home">
             <i class="fas fa-home"></i>
             <span>Home</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#">
+          <a href="dashboard/progress">
             <i class="fas fa-chart-line"></i>
             <span>Progress</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#">
+          <a href="dashboard/achievements">
             <i class="fas fa-trophy"></i>
             <span>Achievements</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#">
+          <a href="dashboard/craving-help">
             <i class="fas fa-hands-helping"></i>
             <span>Craving Help</span>
           </a>
@@ -58,7 +58,7 @@
     </header>
     <section class="content">
       <div class="content-area">
-        <!-- Add your content here -->
+        <router-outlet></router-outlet>
       </div>
     </section>
   </main>
