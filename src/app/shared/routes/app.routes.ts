@@ -34,14 +34,42 @@ export const routes: Routes = [
     loadComponent: () =>
       import(
         '../../components/dashboard-screen/dashboard-screen.component'
-      ).then((m) => m.SurveyScreenComponent),
-  },
-  {
-    path: 'terms-and-conditions',
-    loadComponent: () =>
-      import(
-        '../../components/terms-and-conditions-screen/terms-and-conditions-screen.component'
-      ).then((m) => m.TermsAndConditionsScreenComponent),
+      ).then((m) => m.DashboardScreenComponent),
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('../../components/home-screen/home-screen.component').then(
+            (m) => m.HomeScreenComponent
+          ),
+      },
+      {
+        path: 'progress',
+        loadComponent: () =>
+          import(
+            '../../components/progress-screen/progress-screen.component'
+          ).then((m) => m.ProgressScreenComponent),
+      },
+      {
+        path: 'achievements',
+        loadComponent: () =>
+          import(
+            '../../components/achievements-screen/achievements-screen.component'
+          ).then((m) => m.AchievementsScreenComponent),
+      },
+      {
+        path: 'craving-help',
+        loadComponent: () =>
+          import(
+            '../../components/craving-help-screen/craving-help-screen.component'
+          ).then((m) => m.CravingHelpScreenComponent),
+      },
+    ],
   },
   {
     path: 'terms-and-conditions',
@@ -54,5 +82,5 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/splash',
     pathMatch: 'full',
-  }, // Default route
+  },
 ];
