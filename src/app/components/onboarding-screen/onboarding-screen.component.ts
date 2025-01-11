@@ -17,19 +17,19 @@ export class OnboardingScreenComponent {
       title: 'Welcome to Quitnic!',
       description:
         'Quitnic is your partner in quitting smoking. We help you overcome cravings, track your progress, and stay motivated.',
-      image: '/assets/a-person-looking-determined-or-a-small-group-celeb.svg',
+      image: '/assets/welcome.svg',
     },
     {
       title: 'Track Your Progress',
       description:
         'Stay motivated by tracking how much money you’ve saved and the health benefits of quitting.',
-      image: '/assets/a-piggy-bank-or-a-bar-graph-showing-progress-.svg',
+      image: '/assets/check-progress-white-background.svg',
     },
     {
       title: 'Get Support Anytime',
       description:
         'Access tools, tips, and motivation to overcome cravings whenever you need it.',
-      image: '/assets/two-people-on-a-staircase--one-person-firmly-holdi.svg',
+      image: '/assets/get-support-anytime.svg',
     },
   ];
 

@@ -1,1 +1,20 @@
-<p>achievements-screen works!</p>
+<main class="main-content">
+  <div class="achievements-container">
+    <!-- Screen Title -->
+    <h2 class="screen-title">Your Achievements</h2>
+
+    <!-- Achievements Grid -->
+    <div class="achievements-grid">
+      <div
+        class="achievement-card"
+        *ngFor="let achievement of achievements"
+        [class.unlocked]="achievement.unlocked"
+      >
+        <i class="{{ achievement.icon }}"></i>
+        <h3>{{ achievement.title }}</h3>
+        <p *ngIf="!achievement.unlocked">Locked</p>
+        <p *ngIf="achievement.unlocked">Unlocked</p>
+      </div>
+    </div>
+  </div>
+</main>

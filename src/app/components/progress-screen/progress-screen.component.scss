@@ -1,0 +1,61 @@
+.progress-container {
+  padding: 30px;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .progress-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .progress-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    min-height: 30vh;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .progress-icon {
+      font-size: 100px;
+      color: #2a9d8f;
+      margin-bottom: 10px;
+    }
+
+    .progress-data {
+      .progress-value {
+        margin-right: 8px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .progress-label {
+        font-size: 16px;
+        color: #666;
+      }
+    }
+  }
+}

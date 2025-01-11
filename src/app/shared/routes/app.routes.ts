@@ -38,7 +38,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/dashboard/home',
         pathMatch: 'full',
       },
       {
@@ -68,6 +68,13 @@ export const routes: Routes = [
           import(
             '../../components/craving-help-screen/craving-help-screen.component'
           ).then((m) => m.CravingHelpScreenComponent),
+      },
+      {
+        path: 'personalization',
+        loadComponent: () =>
+          import(
+            '../../components/personalization-screen/personalization-screen.component'
+          ).then((m) => m.PersonalizationScreenComponent),
       },
     ],
   },

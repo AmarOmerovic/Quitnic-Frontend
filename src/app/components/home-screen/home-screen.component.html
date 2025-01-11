@@ -1,1 +1,29 @@
-<p>home-screen works!</p>
+<div class="home-container">
+  <!-- Welcome Message -->
+  <div class="welcome-section">
+    <h2>Welcome back, Amar!</h2>
+    <p>Your journey to a smoke-free life continues. Keep going strong!</p>
+  </div>
+
+  <!-- Navigation Cards -->
+  <div class="navigation-section">
+    <div class="nav-card" (click)="navigateTo('dashboard/achievements')">
+      <img src="/assets/view-achievements.svg" alt="Achievements" />
+      <h3>View Achievements</h3>
+      <button class="primary-button">Open</button>
+    </div>
+    <div class="nav-card" (click)="navigateTo('dashboard/progress')">
+      <img src="/assets/check-progress-white-background.svg" alt="Progress" />
+      <h3>Check Progress</h3>
+      <button class="primary-button">Open</button>
+    </div>
+    <div class="nav-card" (click)="navigateTo('dashboard/craving-help')">
+      <img
+        src="/assets/nicotine-craving-whitebackground-.svg"
+        alt="Craving Help"
+      />
+      <h3>Get Craving Help</h3>
+      <button class="primary-button">Open</button>
+    </div>
+  </div>
+</div>

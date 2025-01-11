@@ -1,1 +1,29 @@
-<p>progress-screen works!</p>
+<div class="progress-container">
+  <h2>Your Progress</h2>
+  <div class="progress-cards">
+    <!-- Days Smoke-Free -->
+    <div class="progress-card">
+      <i class="fas fa-calendar-alt progress-icon"></i>
+      <div class="progress-data">
+        <span class="progress-value">{{ daysSmokeFree }}</span>
+        <span class="progress-label">Days Smoke-Free</span>
+      </div>
+    </div>
+    <!-- Money Saved -->
+    <div class="progress-card">
+      <i class="fas fa-piggy-bank progress-icon"></i>
+      <div class="progress-data">
+        <span class="progress-value">${{ moneySaved }}</span>
+        <span class="progress-label">Money Saved</span>
+      </div>
+    </div>
+    <!-- Cigarettes Avoided -->
+    <div class="progress-card">
+      <i class="fas fa-smoking-ban progress-icon"></i>
+      <div class="progress-data">
+        <span class="progress-value">{{ cigarettesAvoided }}</span>
+        <span class="progress-label">Cigarettes Avoided</span>
+      </div>
+    </div>
+  </div>
+</div>
