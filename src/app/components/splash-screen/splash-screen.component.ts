@@ -32,6 +32,7 @@ export class SplashScreenComponent implements OnInit {
             const supabaseUserId = session.user?.id;
             this.fetchUserFromBackend(supabaseUserId);
           } else {
+            console.log('Sessions fail');
             this.router.navigateByUrl('/onboarding');
           }
         }),

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SupabaseService } from '../../shared/services/supabase/supabase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-survey-screen',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard-screen.component.scss',
   standalone: true,
 })
-export class SurveyScreenComponent {}
+export class SurveyScreenComponent {
+  supabaseService = inject(SupabaseService);
+  router = inject(Router);
+
+  logout() {
+    this.supabaseService.signOut();
+  }
+}
