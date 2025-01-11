@@ -30,11 +30,11 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'survey',
+    path: 'dashboard',
     loadComponent: () =>
-      import('../../components/survey-screen/survey-screen.component').then(
-        (m) => m.SurveyScreenComponent
-      ),
+      import(
+        '../../components/dashboard-screen/dashboard-screen.component'
+      ).then((m) => m.SurveyScreenComponent),
   },
   {
     path: 'terms-and-conditions',

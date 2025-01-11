@@ -45,7 +45,7 @@ export class SplashScreenComponent implements OnInit {
 
   private fetchUserFromBackend(userId: string) {
     this.userService.fetchUserWithId(userId).subscribe({
-      next: () => this.router.navigateByUrl('/survey'),
+      next: () => this.router.navigateByUrl('/dashboard'),
       error: () =>
         this.supabaseService.signOut().subscribe({
           next: () => this.router.navigateByUrl('/onboarding'),
