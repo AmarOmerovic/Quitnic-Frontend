@@ -1,1 +1,44 @@
-<p>craving-help-screen works!</p>
+<div class="craving-help-container">
+  <!-- Screen Title -->
+  <h2 class="screen-title">Craving Help</h2>
+
+  <!-- Progress Stat -->
+  <div class="progress-stat">
+    <p>
+      <strong>You’ve been smoke-free for {{ daysSmokeFree }} days</strong> and
+      saved <strong>${{ moneySaved }}</strong
+      >!
+    </p>
+  </div>
+
+  <div class="help-grid">
+    <!-- Motivational Tip -->
+    <div class="tip-section">
+      <h3>Motivational Tip</h3>
+      <p class="tip-message">{{ currentTip }}</p>
+      <button class="primary-button" (click)="getNewTip()">
+        Get Another Tip
+      </button>
+    </div>
+
+    <!-- Craving Timer -->
+    <div class="timer-section">
+      <h3>Craving Timer</h3>
+      <p>Cravings usually last about 10 minutes. Stay strong!</p>
+      <div class="timer-display">{{ timerDisplay }}</div>
+      <div class="timer-controls">
+        <button class="primary-button" (click)="startTimer()">
+          Start Timer
+        </button>
+        <button class="secondary-button" (click)="resetTimer()">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personalized Message -->
+  <div class="personalized-message">
+    <p>
+      Remember why you’re quitting: <strong>{{ quitReason }}</strong>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+.craving-help-container {
+  padding: 30px;
+  font-family: "Open Sans", sans-serif;
+
+  .screen-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+  }
+
+  .progress-stat {
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+
+    p {
+      font-weight: bold;
+    }
+  }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tip-section,
+  .timer-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #2a9d8f;
+    }
+
+    .tip-message,
+    .timer-display {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    .timer-display {
+      font-size: 24px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .timer-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: auto;
+    color: #ffffff;
+    border: none;
+    border-radius: 32px;
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+
+    &.primary-button {
+      background-color: #2a9d8f;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #237c72;
+        transform: translateY(-2px);
+      }
+    }
+
+    &.secondary-button {
+      background-color: #f0f0f0;
+      color: #555;
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  .personalized-message {
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+    font-style: italic;
+  }
+}

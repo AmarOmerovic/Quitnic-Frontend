@@ -8,7 +8,7 @@ body {
 
   .sidebar {
     width: 280px;
-    background-color: #007bff;
+    background-color: #2a9d8f;
     color: white;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@ body {
 
             &:hover,
             &.active {
-              background-color: #0056b3;
+              background-color: #237c72;
               color: #ffffff;
             }
           }
@@ -152,12 +152,6 @@ body {
 
     .content {
       padding: 20px 32px; // Increased vertical padding
-
-      h2 {
-        margin: 0 0 16px;
-        font-size: 24px;
-        color: #333;
-      }
 
       .content-area {
         background-color: white;

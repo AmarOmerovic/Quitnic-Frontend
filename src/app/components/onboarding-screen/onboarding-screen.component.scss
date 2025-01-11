@@ -25,7 +25,7 @@
 
   .left-section {
     flex: 1.2;
-    background: linear-gradient(135deg, #007bff, #0056b3); // Stylish gradient
+    background: linear-gradient(135deg, #2a9d8f, #2a9d8f); // Stylish gradient
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,13 +110,13 @@
           background-color: #ddd;
 
           &.active {
-            background-color: #007bff; // Active dot color
+            background-color: #2a9d8f; // Active dot color
           }
         }
       }
 
       .next-btn {
-        background-color: #007bff; // Primary button color
+        background-color: #2a9d8f; // Primary button color
         color: #fff;
         border: none;
         border-radius: 32px; // Larger rounded button
@@ -128,8 +128,8 @@
         transition: background-color 0.3s ease, transform 0.2s ease;
 
         &:hover {
-          background-color: #0056b3; // Darker shade for hover
-          transform: translateY(-2px); // Lift effect on hover
+          background-color: #237c72;
+          transform: translateY(-2px);
         }
       }
     }
