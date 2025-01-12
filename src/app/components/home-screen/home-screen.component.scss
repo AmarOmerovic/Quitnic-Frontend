@@ -70,14 +70,7 @@
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-
-        &:hover {
-          background-color: #237c72;
-          transform: translateY(-2px);
-        }
       }
     }
   }

@@ -8,9 +8,8 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  http = inject(HttpClient);
-
   userApi = 'api/user';
+  http = inject(HttpClient);
 
   createUser(user: UserRequest): Observable<UserResponse> {
     return this.http.post<UserResponse>(
