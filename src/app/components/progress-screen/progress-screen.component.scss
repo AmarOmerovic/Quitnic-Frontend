@@ -27,16 +27,10 @@
     min-height: 30vh;
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-
     display: flex; /* Flexbox for centering */
     flex-direction: column; /* Stack content vertically */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-
-    &:hover {
-      transform: translateY(-5px);
-    }
 
     .progress-icon {
       font-size: 100px;

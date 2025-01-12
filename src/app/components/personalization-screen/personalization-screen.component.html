@@ -1,17 +1,35 @@
 <div class="personalization-container">
   <h2>Personalize Your Quit Journey</h2>
-  <form>
+  <form #personalizationForm="ngForm">
     <div class="form-group">
       <label for="quit-date">Quit Date</label>
-      <input type="date" id="quit-date" name="quitDate" required />
+      <input
+        type="date"
+        id="quit-date"
+        name="quitDate"
+        [(ngModel)]="formData.quitDate"
+        required
+      />
     </div>
     <div class="form-group">
       <label for="pack-cost">Cost per Pack ($)</label>
       <input
         type="number"
         id="pack-cost"
-        name="packCost"
+        name="costPerPack"
+        [(ngModel)]="formData.costPerPack"
         step="0.01"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="cigarettes-per-pack">Cigarettes per Pack</label>
+      <input
+        type="number"
+        id="cigarettes-per-pack"
+        name="cigarettesPerPack"
+        [(ngModel)]="formData.cigarettesPerPack"
+        step="1"
         required
       />
     </div>
@@ -21,7 +39,8 @@
         type="number"
         id="packs-per-day"
         name="packsPerDay"
-        step="0.1"
+        [(ngModel)]="formData.packsPerDay"
+        step="1"
         required
       />
     </div>
@@ -30,11 +49,30 @@
       <input
         type="text"
         id="quit-reason"
-        name="quitReason"
+        name="reasonForQuitting"
+        [(ngModel)]="formData.reasonForQuitting"
         placeholder="For my health, family, etc."
         required
       />
     </div>
-    <button type="submit" class="save-button">Save</button>
+
+    <!-- Error message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Progress indicator -->
+    <div *ngIf="isLoading" class="loading-indicator">
+      <p>Updating your data...</p>
+    </div>
+
+    <button
+      type="submit"
+      class="save-button"
+      [disabled]="!personalizationForm.form.valid || isLoading"
+      (click)="saveSmokeHistory()"
+    >
+      Save
+    </button>
   </form>
 </div>

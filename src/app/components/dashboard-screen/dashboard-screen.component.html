@@ -7,31 +7,46 @@
     <nav class="menu">
       <ul>
         <li class="menu-item active">
-          <a href="dashboard/home">
+          <a
+            [routerLink]="['/dashboard/home']"
+            [queryParams]="{ userId: userId }"
+          >
             <i class="fas fa-home"></i>
             <span>Home</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="dashboard/progress">
+          <a
+            [routerLink]="['/dashboard/progress']"
+            [queryParams]="{ userId: userId }"
+          >
             <i class="fas fa-chart-line"></i>
             <span>Progress</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="dashboard/achievements">
+          <a
+            [routerLink]="['/dashboard/achievements']"
+            [queryParams]="{ userId: userId }"
+          >
             <i class="fas fa-trophy"></i>
             <span>Achievements</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="dashboard/craving-help">
+          <a
+            [routerLink]="['/dashboard/craving-help']"
+            [queryParams]="{ userId: userId }"
+          >
             <i class="fas fa-hands-helping"></i>
             <span>Craving Help</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="dashboard/personalization">
+          <a
+            [routerLink]="['/dashboard/personalization']"
+            [queryParams]="{ userId: userId }"
+          >
             <i class="fas fa-edit"></i>
             <span>Personalization</span>
           </a>
