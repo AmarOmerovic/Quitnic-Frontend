@@ -5,19 +5,50 @@
     <p>Your journey to a smoke-free life continues. Keep going strong!</p>
   </div>
 
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Progress indicator -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading, please wait...</p>
+  </div>
+
   <!-- Navigation Cards -->
-  <div class="navigation-section">
-    <div class="nav-card" (click)="navigateTo('dashboard/achievements')">
+  <div class="navigation-section" *ngIf="!isLoading || errorMessage == ''">
+    <div
+      class="nav-card"
+      *ngIf="showPersonalization && !isLoading"
+      (click)="navigateTo('dashboard/personalization')"
+    >
+      <img src="/assets/quit-smoking-survey.svg" alt="Achievements" />
+      <h3>Personalize Your Quit Plan</h3>
+      <button class="primary-button">Open</button>
+    </div>
+    <div
+      class="nav-card"
+      *ngIf="!showPersonalization && !isLoading"
+      (click)="navigateTo('dashboard/achievements')"
+    >
       <img src="/assets/view-achievements.svg" alt="Achievements" />
       <h3>View Achievements</h3>
       <button class="primary-button">Open</button>
     </div>
-    <div class="nav-card" (click)="navigateTo('dashboard/progress')">
+    <div
+      class="nav-card"
+      *ngIf="!showPersonalization && !isLoading"
+      (click)="navigateTo('dashboard/progress')"
+    >
       <img src="/assets/check-progress-white-background.svg" alt="Progress" />
       <h3>Check Progress</h3>
       <button class="primary-button">Open</button>
     </div>
-    <div class="nav-card" (click)="navigateTo('dashboard/craving-help')">
+    <div
+      class="nav-card"
+      *ngIf="!showPersonalization && !isLoading"
+      (click)="navigateTo('dashboard/craving-help')"
+    >
       <img
         src="/assets/nicotine-craving-whitebackground-.svg"
         alt="Craving Help"

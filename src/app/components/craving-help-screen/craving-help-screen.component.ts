@@ -1,35 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MotivationTipService } from '../../shared/services/motivation-tip/motivation-tip-service.service';
+import { MotivationTip } from '../../shared/models/motivation-tip';
+import { UserSmokeHistoryService } from '../../shared/services/user-smoke-history/user-smoke-history.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserSmokeHistoryResponse } from '../../shared/models/user-smoke-history';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-craving-help-screen',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './craving-help-screen.component.html',
   styleUrl: './craving-help-screen.component.scss',
 })
-export class CravingHelpScreenComponent {
-  tips: string[] = [
-    "You're stronger than your cravings!",
-    'Take a deep breath and count to 10.',
-    'Drink a glass of water and wait 5 minutes.',
-    "Think about how far you've come!",
-    'Distract yourself with a walk or a short activity.',
-  ];
+export class CravingHelpScreenComponent implements OnInit {
+  private motivationTipService = inject(MotivationTipService);
+  private smokeHistoryService = inject(UserSmokeHistoryService);
+  private route = inject(ActivatedRoute);
+  private motivationTips: MotivationTip[] = [];
+  private userId = '';
 
-  currentTip: string = this.tips[0];
-  daysSmokeFree: number = 10; // Replace with actual calculation
-  moneySaved: number = 50; // Replace with actual calculation
-  quitReason: string = 'Your family'; // Example from personalization
+  isLoading = false;
+  errorMessage = '';
+  currentTip = '';
+  daysSmokeFree = 0;
+  moneySaved = 0;
+  quitReason = '';
 
-  timerDisplay: string = '00:10:00.000';
+  timerDisplay = '00:10:00.000';
   timer: any;
-  timerMilliseconds: number = 600000; // 10 minutes in milliseconds
+  timerMilliseconds = 600000;
 
-  getNewTip(): void {
-    const randomIndex = Math.floor(Math.random() * this.tips.length);
-    this.currentTip = this.tips[randomIndex];
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.userId = params['userId'];
+      this.fetchMotivationTips();
+    });
   }
 
-  startTimer(): void {
+  getNewTip() {
+    const randomIndex = Math.floor(Math.random() * this.motivationTips.length);
+    this.currentTip = this.motivationTips[randomIndex].tip;
+  }
+
+  startTimer() {
     if (this.timer) clearInterval(this.timer);
     this.timer = setInterval(() => {
       if (this.timerMilliseconds > 0) {
@@ -45,12 +58,70 @@ export class CravingHelpScreenComponent {
         this.timer = null;
         this.timerDisplay = '00:00:00.000';
       }
-    }, 10); // Update every 10ms for millisecond precision
+    }, 10);
   }
 
-  resetTimer(): void {
+  resetTimer() {
     if (this.timer) clearInterval(this.timer);
     this.timerMilliseconds = 600000;
     this.timerDisplay = '00:10:00.000';
+  }
+
+  private fetchMotivationTips() {
+    this.isLoading = true;
+
+    this.motivationTipService.fetchMotivationTips().subscribe({
+      next: (tips) => {
+        this.motivationTips = tips;
+        this.currentTip = this.motivationTips[0].tip;
+        this.fetchUserSmokeHistory();
+      },
+      error: (error) => {
+        console.error('Error fetching motivation tips:', error);
+        this.errorMessage =
+          'Failed to load motivation tips. Please try again later.';
+        this.isLoading = false;
+      },
+    });
+  }
+
+  private fetchUserSmokeHistory() {
+    this.userIdError();
+
+    this.smokeHistoryService.fetchSmokeHistory(this.userId).subscribe({
+      next: (response) => {
+        this.calculateData(response);
+      },
+      error: (error) => {
+        console.error('Error fetching smoke history:', error);
+        this.errorMessage =
+          'Failed to load motivation tips. Please try again later.';
+        this.isLoading = false;
+      },
+    });
+  }
+
+  private calculateData(response: UserSmokeHistoryResponse) {
+    const quitDate = new Date(response.quitDate);
+    const currentDate = new Date();
+
+    this.daysSmokeFree = Math.floor(
+      (currentDate.getTime() - quitDate.getTime()) / (1000 * 60 * 60 * 24)
+    );
+
+    this.moneySaved = Math.floor(
+      this.daysSmokeFree * response.costPerPack * response.packsPerDay
+    );
+
+    this.quitReason = response.reasonForQuitting;
+
+    this.isLoading = false;
+  }
+
+  private userIdError() {
+    if (this.userId === '') {
+      this.errorMessage = 'User ID is missing.';
+      return;
+    }
   }
 }

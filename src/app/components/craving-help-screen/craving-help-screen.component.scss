@@ -10,6 +10,28 @@
     text-align: center;
   }
 
+  .error-message {
+    color: #ff4d4f;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: center;
+    border: 1px solid #ff4d4f;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffecec;
+    margin-top: 125px;
+  }
+
+  .loading-indicator {
+    text-align: center;
+    color: #237c72;
+    font-style: italic;
+    margin: 10px 0;
+    font-size: 16px;
+    margin-top: 125px;
+  }
+
   .progress-stat {
     font-size: 18px;
     text-align: center;

@@ -124,29 +124,6 @@ body {
             }
           }
         }
-
-        .notification-button {
-          width: 40px;
-          height: 40px;
-          background-color: white;
-          border: none;
-          border-radius: 8px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          cursor: pointer;
-          transition: background-color 0.3s;
-
-          &:hover {
-            background-color: #e6e6e6;
-          }
-
-          i {
-            font-size: 18px;
-            color: #555;
-          }
-        }
       }
     }
 
