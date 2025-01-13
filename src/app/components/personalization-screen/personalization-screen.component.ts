@@ -84,7 +84,6 @@ export class PersonalizationScreenComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching smoke history:', error);
-        this.errorMessage = 'Failed to fetch smoke history.';
         this.isLoading = false;
       },
     });

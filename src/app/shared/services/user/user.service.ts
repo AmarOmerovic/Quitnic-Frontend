@@ -18,12 +18,6 @@ export class UserService {
     );
   }
 
-  deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(
-      `${environment.apiBaseUrl}${this.userApi}/${id}`
-    );
-  }
-
   fetchUserWithId(id: string): Observable<UserResponse> {
     return this.http.get<UserResponse>(
       `${environment.apiBaseUrl}${this.userApi}/${id}`

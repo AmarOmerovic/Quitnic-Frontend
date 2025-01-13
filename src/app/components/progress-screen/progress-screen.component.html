@@ -1,6 +1,17 @@
 <div class="progress-container">
   <h2>Your Progress</h2>
-  <div class="progress-cards">
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Progress indicator -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading your progress...</p>
+  </div>
+
+  <div class="progress-cards" *ngIf="!isLoading && !errorMessage">
     <!-- Days Smoke-Free -->
     <div class="progress-card">
       <i class="fas fa-calendar-alt progress-icon"></i>

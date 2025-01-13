@@ -2,8 +2,17 @@
   <!-- Screen Title -->
   <h2 class="screen-title">Craving Help</h2>
 
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Progress indicator -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading your progress...</p>
+  </div>
+
   <!-- Progress Stat -->
-  <div class="progress-stat">
+  <div *ngIf="!isLoading && !errorMessage" class="progress-stat">
     <p>
       <strong>You’ve been smoke-free for {{ daysSmokeFree }} days</strong> and
       saved <strong>${{ moneySaved }}</strong
@@ -11,7 +20,7 @@
     </p>
   </div>
 
-  <div class="help-grid">
+  <div *ngIf="!isLoading && !errorMessage" class="help-grid">
     <!-- Motivational Tip -->
     <div class="tip-section">
       <h3>Motivational Tip</h3>
@@ -22,7 +31,7 @@
     </div>
 
     <!-- Craving Timer -->
-    <div class="timer-section">
+    <div *ngIf="!isLoading && !errorMessage" class="timer-section">
       <h3>Craving Timer</h3>
       <p>Cravings usually last about 10 minutes. Stay strong!</p>
       <div class="timer-display">{{ timerDisplay }}</div>
@@ -36,7 +45,7 @@
   </div>
 
   <!-- Personalized Message -->
-  <div class="personalized-message">
+  <div *ngIf="!isLoading && !errorMessage" class="personalized-message">
     <p>
       Remember why you’re quitting: <strong>{{ quitReason }}</strong>
     </p>

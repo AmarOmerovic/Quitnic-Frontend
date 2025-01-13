@@ -1,37 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserSmokeHistoryService } from '../../shared/services/user-smoke-history/user-smoke-history.service';
+import { UserSmokeHistoryResponse } from '../../shared/models/user-smoke-history';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-progress-screen',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './progress-screen.component.html',
   styleUrl: './progress-screen.component.scss',
 })
 export class ProgressScreenComponent implements OnInit {
-  quitDate: string = '2025-01-01'; // Example date
-  costPerPack: number = 5; // Example cost
-  packsPerDay: number = 1; // Example packs smoked daily
+  smokeHistoryService = inject(UserSmokeHistoryService);
+  route = inject(ActivatedRoute);
+  userId = '';
 
-  daysSmokeFree: number = 0;
-  moneySaved: number = 0;
-  cigarettesAvoided: number = 0;
+  isLoading = false; // To indicate loading state
+  errorMessage = ''; // To store error messages
+  daysSmokeFree = 0;
+  moneySaved = 0;
+  cigarettesAvoided = 0;
 
-  ngOnInit(): void {
-    this.calculateProgress();
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.userId = params['userId'];
+      this.fetchUserSmokeHistory();
+    });
   }
 
-  calculateProgress(): void {
-    const quitDate = new Date(this.quitDate);
+  private fetchUserSmokeHistory() {
+    this.userIdError();
+
+    this.isLoading = true;
+    this.smokeHistoryService.fetchSmokeHistory(this.userId).subscribe({
+      next: (response) => {
+        this.calculateProgress(response);
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching smoke history:', error);
+        this.errorMessage =
+          'Make sure to fill out the form in the "Personalization" section as it is essential to unlock the full potential of Quitnic and tailor the app to your unique quitting journey.';
+        this.isLoading = false;
+      },
+    });
+  }
+
+  private calculateProgress(response: UserSmokeHistoryResponse) {
+    const quitDate = new Date(response.quitDate);
     const currentDate = new Date();
 
-    // Calculate days smoke-free
     this.daysSmokeFree = Math.floor(
       (currentDate.getTime() - quitDate.getTime()) / (1000 * 60 * 60 * 24)
     );
 
-    // Calculate money saved
-    this.moneySaved = this.daysSmokeFree * this.costPerPack * this.packsPerDay;
+    this.moneySaved = Math.floor(
+      this.daysSmokeFree * response.costPerPack * response.packsPerDay
+    );
 
-    // Calculate cigarettes avoided (assuming 20 cigarettes per pack)
-    this.cigarettesAvoided = this.daysSmokeFree * this.packsPerDay * 20;
+    this.cigarettesAvoided = this.daysSmokeFree * response.cigarettesPerDay;
+    console.log(this.cigarettesAvoided);
+  }
+
+  private userIdError() {
+    if (this.userId === '') {
+      this.errorMessage = 'User ID is missing.';
+      return;
+    }
   }
 }
