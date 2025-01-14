@@ -12,6 +12,22 @@
     color: #333;
   }
 
+  .error-message {
+    text-align: center;
+    color: #ff4d4f;
+    font-style: italic;
+    margin-top: 125px;
+    font-size: 16px;
+  }
+
+  .loading-indicator {
+    text-align: center;
+    color: #237c72;
+    font-style: italic;
+    margin-top: 125px;
+    font-size: 16px;
+  }
+
   .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

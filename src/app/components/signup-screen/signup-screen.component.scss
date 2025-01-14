@@ -118,18 +118,30 @@
           transform: translateY(-2px);
         }
       }
-    }
 
-    .error-message {
-      color: #e74c3c; /* Red for error */
-      font-size: 14px;
-      text-align: center;
-    }
+      .success-message {
+        text-align: center;
+        color: #339c44;
+        font-style: italic;
+        margin: 10px 0;
+        font-size: 16px;
+      }
 
-    .success-message {
-      color: #339c44; /* Green for success */
-      font-size: 14px;
-      text-align: center;
+      .error-message {
+        text-align: center;
+        color: #ff4d4f;
+        font-style: italic;
+        margin-top: 20px;
+        font-size: 16px;
+      }
+
+      .loading-indicator {
+        text-align: center;
+        color: #237c72;
+        font-style: italic;
+        margin: 10px 0;
+        font-size: 16px;
+      }
     }
 
     .signin-link {

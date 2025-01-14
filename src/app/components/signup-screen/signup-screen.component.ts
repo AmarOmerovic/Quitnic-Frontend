@@ -27,6 +27,7 @@ export class SignupScreenComponent {
   agreeToTerms: boolean = false;
   errorMessage: string = '';
   successMessage: string = '';
+  isLoading = false;
 
   navigateToSignIn() {
     this.router.navigateByUrl('/signin');

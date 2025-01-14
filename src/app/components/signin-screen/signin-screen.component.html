@@ -36,7 +36,12 @@
           <label for="remember-me">Remember Me</label>
         </div>
         <button class="btn-primary" (click)="login()">Login</button>
-        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="isLoading" class="loading-indicator">
+          <p>Loading, please wait...</p>
+        </div>
       </form>
       <p class="signup-link">
         Don’t have an account?

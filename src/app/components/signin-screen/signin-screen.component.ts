@@ -20,6 +20,7 @@ export class SigninScreenComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  isLoading = false;
 
   navigateToSignUp() {
     this.router.navigateByUrl('/signup');
@@ -34,6 +35,7 @@ export class SigninScreenComponent {
       return;
     }
 
+    this.isLoading = true;
     this.performSupabaseLogin();
   }
 
@@ -68,10 +70,12 @@ export class SigninScreenComponent {
   }
 
   private handleSupabaseError() {
+    this.isLoading = false;
     this.errorMessage = 'An unexpected error occurred during sign-in.';
   }
 
   private handleBackendError() {
+    this.isLoading = false;
     this.errorMessage = 'Unauthorized access. Please reach out to get support.';
   }
 

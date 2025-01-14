@@ -82,10 +82,15 @@
         <button type="submit" class="btn-primary" (click)="register()">
           Register
         </button>
-        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-        <p class="success-message" *ngIf="successMessage">
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="success-message">
           {{ successMessage }}
-        </p>
+        </div>
+        <div *ngIf="isLoading" class="loading-indicator">
+          <p>Loading, please wait...</p>
+        </div>
       </form>
       <p class="signin-link">
         Already have an account?
