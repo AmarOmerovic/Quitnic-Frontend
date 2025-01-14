@@ -1,19 +1,25 @@
 <main class="main-content">
   <div class="achievements-container">
-    <!-- Screen Title -->
     <h2 class="screen-title">Your Achievements</h2>
 
-    <!-- Achievements Grid -->
-    <div class="achievements-grid">
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-indicator">
+      <p>Loading, please wait...</p>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage" class="achievements-grid">
       <div
         class="achievement-card"
         *ngFor="let achievement of achievements"
-        [class.unlocked]="achievement.unlocked"
+        [class.unlocked]="achievement.isUnlocked"
       >
-        <i class="{{ achievement.icon }}"></i>
-        <h3>{{ achievement.title }}</h3>
-        <p *ngIf="!achievement.unlocked">Locked</p>
-        <p *ngIf="achievement.unlocked">Unlocked</p>
+        <i class="fas fa-star"></i>
+        <h3>{{ achievement.achievement.title }}</h3>
+        <p *ngIf="!achievement.isUnlocked">Locked</p>
+        <p *ngIf="achievement.isUnlocked">Unlocked on</p>
       </div>
     </div>
   </div>
